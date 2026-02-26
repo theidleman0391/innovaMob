@@ -1,11 +1,30 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Calendar, ArrowLeft, ChevronRight } from 'lucide-react';
-import { blogPosts } from '../data/blogPosts';
+import { Calendar, ArrowLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { getPostBySlug } from '../services/blogStore';
+import type { BlogPost as BlogPostType } from '../types/post';
 
 export default function BlogPost() {
-  const { id } = useParams<{ id: string }>();
-  const post = blogPosts.find((p) => p.id === id);
+  const { id: slug } = useParams<{ id: string }>();
+  const [post, setPost] = useState<BlogPostType | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!slug) return;
+    getPostBySlug(slug)
+      .then(setPost)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="pt-24 min-h-screen bg-white flex items-center justify-center">
+        <Loader2 className="animate-spin text-[var(--color-primary)]" size={32} />
+      </div>
+    );
+  }
 
   if (!post) {
     return <Navigate to="/blog" replace />;

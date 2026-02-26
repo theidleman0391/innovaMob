@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, MessageCircle } from 'lucide-react';
 
@@ -18,7 +18,7 @@ export default function Header() {
   const navLinks = [
     { name: 'Inicio', href: '/#inicio' },
     { name: 'Servicios', href: '/#servicios' },
-    { name: 'Proyectos', href: '/#proyectos' },
+    { name: 'Proyectos', href: '/proyectos' },
     { name: 'Nosotros', href: '/#nosotros' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contacto', href: '/#contacto' },
@@ -45,14 +45,17 @@ export default function Header() {
     requestAnimationFrame(step);
   };
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
     setIsMobileMenuOpen(false);
-    if (href.startsWith('/#') && location.pathname === '/') {
+    if (href.startsWith('/#')) {
       const id = href.substring(2);
       const element = document.getElementById(id);
       if (element) {
+        // Element exists on this page → scroll in-place, no navigation
+        e.preventDefault();
         smoothScrollTo(element);
       }
+      // Element not found → let React Router navigate normally
     }
   };
 
@@ -62,7 +65,7 @@ export default function Header() {
         }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center max-w-7xl">
-        <Link to="/" className="flex items-center gap-2" onClick={() => handleNavClick('/#inicio')}>
+        <Link to="/" className="flex items-center gap-2" onClick={(e) => handleNavClick(e, '/#inicio')}>
           <img src="/logo.png" alt="InnovaMob Logo" className="h-8 md:h-9 w-auto object-contain" />
         </Link>
 
@@ -72,7 +75,7 @@ export default function Header() {
             <Link
               key={link.name}
               to={link.href}
-              onClick={() => handleNavClick(link.href)}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-gray-200 hover:text-white font-medium transition-colors"
             >
               {link.name}
@@ -98,7 +101,7 @@ export default function Header() {
               <Link
                 key={link.name}
                 to={link.href}
-                onClick={() => handleNavClick(link.href)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-gray-200 font-medium p-2 hover:bg-gray-800 rounded-lg"
               >
                 {link.name}

@@ -3,27 +3,27 @@ import { MessageCircle, Ruler, MonitorPlay, Hammer, Wrench } from 'lucide-react'
 const steps = [
   {
     title: 'Contacto',
-    description: 'Escríbenos por WhatsApp o formulario para contarnos tu idea.',
+    description: 'Escríbeme por WhatsApp o formulario para contarme tu idea.',
     icon: MessageCircle,
   },
   {
     title: 'Diagnóstico y medidas',
-    description: 'Visitamos tu espacio para tomar medidas precisas y asesorarte.',
+    description: 'Visito tu espacio para tomar medidas precisas y asesorarte.',
     icon: Ruler,
   },
   {
     title: 'Diseño 3D',
-    description: 'Te presentamos una propuesta visual con renders fotorrealistas.',
+    description: 'Te presento una propuesta visual con renders fotorrealistas.',
     icon: MonitorPlay,
   },
   {
     title: 'Fabricación',
-    description: 'Construimos tus muebles con materiales de primera calidad.',
+    description: 'Fabrico tus muebles con materiales de primera calidad.',
     icon: Hammer,
   },
   {
     title: 'Instalación',
-    description: 'Nuestro equipo experto realiza el montaje y los ajustes finales.',
+    description: 'Realizo el montaje y los ajustes finales en tu espacio.',
     icon: Wrench,
   },
 ];
@@ -34,10 +34,10 @@ export default function Process() {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center max-w-3xl mx-auto mb-6">
           <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
-            Cómo Trabajamos
+            Cómo Trabajo
           </span>
           <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-secondary)] mb-2">
-            Nuestro Proceso de Trabajo
+            Mi Proceso de Trabajo
           </h2>
           <p className="text-gray-600 text-sm">
             Un método probado para garantizar resultados perfectos y tu total satisfacción en cada etapa del proyecto.

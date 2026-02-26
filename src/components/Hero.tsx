@@ -42,11 +42,11 @@ export default function Hero() {
           </span>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-3">
-            Muebles de cocina y closets a medida en Santiago
+            Muebles de cocina y closets a medida en Puerto Montt
           </h1>
 
           <p className="text-sm md:text-base text-gray-200 mb-5 leading-relaxed max-w-2xl">
-            Diseño moderno, funcional y personalizado. Te acompañamos desde la idea hasta la instalación con asesoría técnica y más de 35 años de experiencia.
+            Diseño moderno, funcional y personalizado. Te acompaño desde la idea hasta la instalación con asesoría técnica y más de 35 años de experiencia.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -57,7 +57,7 @@ export default function Hero() {
               className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-6 py-3 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-base"
             >
               <MessageCircle size={24} />
-              <span>Cotiza tu proyecto gratis</span>
+              <span>Cotiza tu proyecto</span>
             </a>
 
             <button

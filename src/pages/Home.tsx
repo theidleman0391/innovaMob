@@ -1,12 +1,23 @@
+import { useLayoutEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
 import Process from '../components/Process';
-import Projects from '../components/Projects';
 import About from '../components/About';
 import Contact from '../components/Contact';
 
 export default function Home() {
+  // Scroll to the section indicated by the URL hash before first paint
+  // useLayoutEffect runs synchronously so no flash of the hero is visible
+  useLayoutEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+    const el = document.getElementById(hash);
+    if (el) {
+      const targetY = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: targetY, behavior: 'instant' });
+    }
+  }, []);
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -48,12 +59,11 @@ export default function Home() {
           {JSON.stringify(structuredData)}
         </script>
       </Helmet>
-      
+
       <main>
         <Hero />
         <Services />
         <Process />
-        <Projects />
         <About />
         <Contact />
       </main>

@@ -29,10 +29,10 @@ export default function About() {
 
             <div className="space-y-3 text-gray-600 text-sm leading-relaxed mb-4">
               <p>
-                En InnovaMob somos especialistas en el diseño y fabricación de muebles a medida. Con más de 35 años de experiencia en el mercado, hemos perfeccionado el arte de crear espacios únicos que combinan funcionalidad, estética y durabilidad.
+                En InnovaMob soy especialista en el diseño y fabricación de muebles a medida. Con más de 35 años de experiencia en el mercado, he perfeccionado el arte de crear espacios únicos que combinan funcionalidad, estética y durabilidad.
               </p>
               <p>
-                Nuestro enfoque se centra en el <strong>diseño personalizado</strong>. Entendemos que cada hogar es diferente, por lo que trabajamos de la mano contigo para materializar tus ideas utilizando materiales de última generación y herrajes de la más alta calidad.
+                Mi enfoque se centra en el <strong>diseño personalizado</strong>. Entiendo que cada hogar es diferente, por lo que trabajo de la mano contigo para materializar tus ideas utilizando materiales de última generación y herrajes de la más alta calidad.
               </p>
             </div>
 
