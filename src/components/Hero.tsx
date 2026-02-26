@@ -23,11 +23,11 @@ const smoothScrollTo = (element: HTMLElement) => {
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+    <section id="inicio" className="relative min-h-screen flex items-center pt-14 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"
+          src="/hero.jpg"
           alt="Cocina moderna a medida"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
@@ -37,15 +37,15 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
         <div className="max-w-3xl">
-          <span className="inline-block py-1 px-3 rounded-full bg-[var(--color-primary)]/20 text-[var(--color-primary)] font-medium text-sm mb-6 border border-[var(--color-primary)]/30 backdrop-blur-sm">
+          <span className="inline-block py-1 px-3 rounded-full bg-[var(--color-primary)]/20 text-[var(--color-primary)] font-medium text-xs mb-4 border border-[var(--color-primary)]/30 backdrop-blur-sm">
             Diseño y Fabricación Personalizada
           </span>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-3">
             Muebles de cocina y closets a medida en Santiago
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl">
+          <p className="text-sm md:text-base text-gray-200 mb-5 leading-relaxed max-w-2xl">
             Diseño moderno, funcional y personalizado. Te acompañamos desde la idea hasta la instalación con asesoría técnica y más de 35 años de experiencia.
           </p>
 
@@ -54,7 +54,7 @@ export default function Hero() {
               href="https://wa.me/56995936847"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-8 py-4 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-lg"
+              className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-6 py-3 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-base"
             >
               <MessageCircle size={24} />
               <span>Cotiza tu proyecto gratis</span>
@@ -65,7 +65,7 @@ export default function Hero() {
                 const el = document.getElementById('servicios');
                 if (el) smoothScrollTo(el);
               }}
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-full font-medium transition-all backdrop-blur-sm text-lg"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3 rounded-full font-medium transition-all backdrop-blur-sm text-base"
             >
               <span>Ver servicios</span>
               <ArrowRight size={20} />
@@ -73,18 +73,18 @@ export default function Hero() {
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 border-t border-white/20 pt-8">
+          <div className="mt-5 grid grid-cols-2 md:grid-cols-3 gap-3 border-t border-white/20 pt-4">
             <div>
-              <p className="text-3xl font-bold text-[var(--color-primary)] mb-1">+35</p>
-              <p className="text-sm text-gray-300">Años de experiencia</p>
+              <p className="text-2xl md:text-3xl font-bold text-[var(--color-primary)] mb-1">+35</p>
+              <p className="text-xs md:text-sm text-gray-300">Años de experiencia</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-[var(--color-primary)] mb-1">100%</p>
-              <p className="text-sm text-gray-300">Diseño personalizado</p>
+              <p className="text-2xl md:text-3xl font-bold text-[var(--color-primary)] mb-1">100%</p>
+              <p className="text-xs md:text-sm text-gray-300">Diseño personalizado</p>
             </div>
             <div className="hidden md:block">
-              <p className="text-3xl font-bold text-[var(--color-primary)] mb-1">3D</p>
-              <p className="text-sm text-gray-300">Visualización previa</p>
+              <p className="text-2xl md:text-3xl font-bold text-[var(--color-primary)] mb-1">3D</p>
+              <p className="text-xs md:text-sm text-gray-300">Visualización previa</p>
             </div>
           </div>
         </div>

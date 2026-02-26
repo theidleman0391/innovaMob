@@ -49,41 +49,41 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicios" className="py-24 bg-white relative">
+    <section id="servicios" className="py-10 md:py-14 xl:py-20 bg-white relative">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-sm mb-4 block">
+        <div className="text-center max-w-3xl mx-auto mb-6">
+          <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
             Nuestros Servicios
           </span>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-[var(--color-secondary)] mb-6">
+          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-secondary)] mb-2">
             Soluciones a medida para cada espacio
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-sm text-gray-600 leading-relaxed">
             Transformamos tus ideas en realidad con muebles diseñados específicamente para tus necesidades, combinando estética, funcionalidad y durabilidad.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.id}
-                className="bg-[var(--color-bg-light)] rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1 flex flex-col h-full"
+                className="bg-[var(--color-bg-light)] rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1 flex flex-col h-full"
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
-                    <Icon size={24} />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 bg-white rounded-xl shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
+                    <Icon size={18} />
                   </div>
-                  <h3 className="text-lg font-bold text-[var(--color-secondary)] font-serif leading-tight">
+                  <h3 className="text-sm font-bold text-[var(--color-secondary)] font-serif leading-tight">
                     {service.title}
                   </h3>
                 </div>
-                
+
                 <p className="text-gray-600 text-sm mb-5 flex-grow">
                   {service.description}
                 </p>
-                
+
                 <ul className="space-y-2 mt-auto">
                   {service.bullets.map((bullet, index) => (
                     <li key={index} className="flex items-start gap-2">
@@ -97,12 +97,12 @@ export default function Services() {
           })}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-8 text-center">
           <a
             href="https://wa.me/56995936847"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-8 py-4 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-lg"
+            className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-sm"
           >
             <MessageCircle size={24} />
             <span>Consultar</span>

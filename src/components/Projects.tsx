@@ -74,12 +74,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       onClick={() => onClick(project, currentImg)}
     >
       <div className="aspect-[16/9] overflow-hidden relative">
-        <img
-          src={project.images[currentImg]}
-          alt={project.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          referrerPolicy="no-referrer"
-        />
+        {project.images.map((src, idx) => (
+          <img
+            key={src}
+            src={src}
+            alt={`${project.title} ${idx + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:scale-105 transition-[opacity,transform] ${idx === currentImg ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            referrerPolicy="no-referrer"
+          />
+        ))}
 
         {/* Navigation Arrows */}
         {project.images.length > 1 && (
@@ -119,8 +123,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
           </span>
         </div>
       </div>
-      <div className="p-6 bg-[var(--color-bg-light)] flex-grow">
-        <h3 className="text-xl font-bold text-[var(--color-secondary)] font-serif mb-2">
+      <div className="p-4 bg-[var(--color-bg-light)] flex-grow">
+        <h3 className="text-base font-bold text-[var(--color-secondary)] font-serif mb-1">
           {project.title}
         </h3>
         <p className="text-gray-500 text-sm">
@@ -158,21 +162,21 @@ export default function Projects() {
   }
 
   return (
-    <section id="proyectos" className="py-24 bg-gray-50">
+    <section id="proyectos" className="py-10 md:py-14 xl:py-20 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-sm mb-4 block">
+        <div className="text-center max-w-3xl mx-auto mb-6">
+          <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
             Nuestros Trabajos
           </span>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-[var(--color-secondary)] mb-6">
+          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-secondary)] mb-2">
             Proyectos Destacados
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-sm text-gray-600 leading-relaxed">
             Explora el detalle de nuestros últimos trabajos en diseño y fabricación de muebles a medida. Haz clic en cada proyecto para ver más información.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} onClick={handleOpenModal} />
           ))}
@@ -196,12 +200,16 @@ export default function Projects() {
             </button>
 
             <div className="w-full md:w-1/2 h-64 md:h-auto relative group">
-              <img
-                src={selectedProject.project.images[modalImgIndex]}
-                alt={selectedProject.project.title}
-                className="absolute inset-0 w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
+              {selectedProject.project.images.map((src, idx) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={`${selectedProject.project.title} ${idx + 1}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${idx === modalImgIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                    }`}
+                  referrerPolicy="no-referrer"
+                />
+              ))}
 
               {/* Modal Navigation Arrows */}
               {selectedProject.project.images.length > 1 && (

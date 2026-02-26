@@ -23,77 +23,77 @@ export default function Contact() {
   };
 
   return (
-    <section id="contacto" className="py-24 bg-[var(--color-bg-light)] relative overflow-hidden">
+    <section id="contacto" className="py-10 md:py-14 xl:py-20 bg-[var(--color-bg-light)] relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[var(--color-primary)]/5 rounded-l-full -z-10 blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-[var(--color-accent)]/5 rounded-r-full -z-10 blur-3xl"></div>
 
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start">
           {/* Contact Info */}
           <div>
-            <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-sm mb-4 block">
+            <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
               Contacto
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-[var(--color-secondary)] mb-6">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-secondary)] mb-3">
               ¿Listo para transformar tu espacio?
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-10">
+            <p className="text-base text-gray-600 leading-relaxed mb-6">
               La forma más rápida de cotizar tu proyecto es escribiéndonos por WhatsApp. Nuestro equipo de diseñadores te responderá en poco tiempo para agendar una visita técnica.
             </p>
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 mb-10 relative overflow-hidden group">
+            <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 mb-4 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-accent)]/10 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              
-              <h3 className="text-2xl font-bold text-[var(--color-secondary)] font-serif mb-6 flex items-center gap-3">
-                <MessageCircle className="text-[var(--color-accent)] w-8 h-8" />
+
+              <h3 className="text-lg font-bold text-[var(--color-secondary)] font-serif mb-3 flex items-center gap-2">
+                <MessageCircle className="text-[var(--color-accent)] w-5 h-5" />
                 Atención Inmediata
               </h3>
-              
-              <p className="text-gray-600 mb-8 text-lg">
+
+              <p className="text-gray-600 mb-4 text-sm">
                 Escríbenos directamente a nuestro WhatsApp para una atención personalizada y rápida.
               </p>
-              
+
               <a
                 href="https://wa.me/56995936847"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-8 py-5 rounded-xl font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-1 text-xl"
+                className="flex items-center justify-center gap-2 w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-5 py-3 rounded-xl font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-1 text-sm"
               >
                 <MessageCircle size={28} />
                 <span>Contáctanos</span>
               </a>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
-                  <Phone size={24} />
+                <div className="w-9 h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
+                  <Phone size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--color-secondary)] text-lg">Teléfono</h4>
+                  <h4 className="font-bold text-[var(--color-secondary)] text-sm">Teléfono</h4>
                   <p className="text-gray-600">+56 9 9593 6847</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
-                  <Mail size={24} />
+                <div className="w-9 h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
+                  <Mail size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--color-secondary)] text-lg">Email</h4>
+                  <h4 className="font-bold text-[var(--color-secondary)] text-sm">Email</h4>
                   <a href="mailto:contacto@innovamob.cl" className="text-gray-600 hover:text-[var(--color-primary)] transition-colors">
                     contacto@innovamob.cl
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
-                  <MapPin size={24} />
+                  <MapPin size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--color-secondary)] text-lg">Ubicación</h4>
+                  <h4 className="font-bold text-[var(--color-secondary)] text-sm">Ubicación</h4>
                   <p className="text-gray-600">Atención en Santiago y Regiones, Chile.</p>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100">
+          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-100">
             <h3 className="text-2xl font-bold text-[var(--color-secondary)] font-serif mb-2">
               Déjanos un mensaje
             </h3>
