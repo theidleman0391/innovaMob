@@ -32,11 +32,11 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
         <div className="max-w-3xl">
-          <span className="inline-block py-2 px-5 rounded-full bg-[var(--color-primary)] text-white font-bold text-sm sm:text-base mb-6 shadow-lg shadow-[var(--color-primary)]/40 tracking-wide border border-transparent backdrop-blur-sm uppercase">
+          <span className="inline-block py-1.5 px-4 sm:py-2 sm:px-5 rounded-full bg-[var(--color-primary)] text-white font-bold text-[0.7rem] sm:text-sm md:text-base mb-6 shadow-lg shadow-[var(--color-primary)]/40 tracking-wide border border-transparent backdrop-blur-sm uppercase">
             Diseño y Fabricación Personalizada
           </span>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-[var(--color-accent)] leading-tight mb-3">
+          <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-[var(--color-accent)] leading-tight mb-4">
             Muebles de cocina y closets a medida en Puerto Montt
           </h1>
 
