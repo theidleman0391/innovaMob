@@ -171,8 +171,8 @@ export default function ProjectsPage() {
     return (
         <>
             <Helmet>
-                <title>Proyectos | InnovaMob – Muebles a medida en Santiago</title>
-                <meta name="description" content="Explora nuestros proyectos de diseño y fabricación de muebles a medida: cocinas, closets, oficinas y más. InnovaMob, Santiago." />
+                <title>Proyectos | InnovaMob – Muebles a medida en Puerto Montt</title>
+                <meta name="description" content="Explora nuestros proyectos de diseño y fabricación de muebles a medida: cocinas, closets, oficinas y más. InnovaMob, Puerto Montt." />
             </Helmet>
 
             {/* ── Hero banner ── */}

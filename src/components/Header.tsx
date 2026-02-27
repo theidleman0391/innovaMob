@@ -24,11 +24,11 @@ export default function Header() {
     { name: 'Contacto', href: '/#contacto' },
   ];
 
-  const smoothScrollTo = (element: HTMLElement) => {
-    const targetY = element.getBoundingClientRect().top + window.scrollY - 80; // offset for fixed header
+  const smoothScrollTo = (targetY: number) => {
     const startY = window.scrollY;
-    const distance = targetY - startY;
-    const duration = 800; // ms
+    // Account for header offset (-80px)
+    const distance = (targetY - 80) - startY;
+    const duration = 800; // 800ms duration for a premium feel
     let startTime: number | null = null;
 
     const easeInOutCubic = (t: number) =>
@@ -46,16 +46,29 @@ export default function Header() {
   };
 
   const handleNavClick = (e: React.MouseEvent, href: string) => {
+    // Close mobile menu immediately so it doesn't stay open during scroll
     setIsMobileMenuOpen(false);
-    if (href.startsWith('/#')) {
-      const id = href.substring(2);
-      const element = document.getElementById(id);
-      if (element) {
-        // Element exists on this page → scroll in-place, no navigation
+
+    const [path, hash] = href.split('#');
+    const targetPath = path || '/';
+
+    // If we are already on the target page, prevent default and smooth scroll
+    if (location.pathname === targetPath) {
+      if (hash) {
+        // Scroll to specific section on the same page
+        const element = document.getElementById(hash);
+        if (element) {
+          e.preventDefault();
+          const targetY = element.getBoundingClientRect().top + window.scrollY;
+          smoothScrollTo(targetY);
+          window.history.pushState(null, '', href);
+        }
+      } else {
+        // Scroll to top of the page if no hash
         e.preventDefault();
-        smoothScrollTo(element);
+        smoothScrollTo(80); // scroll to top (80px is compensated in smoothScrollTo)
+        window.history.pushState(null, '', href);
       }
-      // Element not found → let React Router navigate normally
     }
   };
 

@@ -89,12 +89,12 @@ export default function Contact() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
+                <div className="w-9 h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--color-secondary)] text-sm">Ubicación</h4>
-                  <p className="text-gray-600">Atención en Santiago y Regiones, Chile.</p>
+                  <h4 className="font-bold text-[var(--color-secondary)] text-sm">Área de Servicio</h4>
+                  <p className="text-gray-600">Atención en Puerto Montt y Regiones, Chile</p>
                 </div>
               </div>
             </div>

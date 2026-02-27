@@ -23,13 +23,13 @@ export default function Home() {
     "@type": "LocalBusiness",
     "name": "InnovaMob",
     "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop",
-    "description": "Diseño y fabricación de muebles a medida en Santiago. Cocinas, closets y mobiliario especializado con más de 35 años de experiencia.",
+    "description": "Diseño y fabricación de muebles a medida en Puerto Montt. Cocinas, closets y mobiliario especializado con más de 35 años de experiencia.",
     "telephone": "+56995936847",
     "email": "contacto@innovamob.cl",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Santiago",
-      "addressRegion": "Región Metropolitana",
+      "addressLocality": "Puerto Montt",
+      "addressRegion": "Los Lagos",
       "addressCountry": "CL"
     },
     "url": "https://innovamob.cl",
@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>InnovaMob | Muebles de cocina y closets a medida en Santiago</title>
+        <title>InnovaMob | Muebles de cocina y closets a medida en Puerto Montt</title>
         <meta name="description" content="Diseño y fabricación de muebles a medida: cocinas, closets y mobiliario especializado. InnovaMob ofrece soluciones personalizadas con más de 35 años de experiencia." />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
