@@ -56,13 +56,13 @@ export default function Process() {
                   <Icon size={24} />
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 w-full h-full">
-                  <span className="text-xs font-bold text-gray-400 mb-2 block uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[var(--color-accent)] mb-2 block uppercase tracking-wider">
                     Paso 0{index + 1}
                   </span>
                   <h4 className="text-sm font-bold text-[var(--color-secondary)] mb-2 font-serif">
                     {step.title}
                   </h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-[var(--color-secondary)] text-sm">
                     {step.description}
                   </p>
                 </div>

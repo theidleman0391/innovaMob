@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import { getPostBySlug } from '../services/blogStore';
 import type { BlogPost as BlogPostType } from '../types/post';
 
@@ -99,7 +100,7 @@ export default function BlogPost() {
 
         {/* Content */}
         <div className="prose prose-lg prose-slate mx-auto max-w-3xl prose-headings:font-serif prose-headings:text-[var(--color-secondary)] prose-a:text-[var(--color-primary)] prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl">
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }} />
         </div>
 
         {/* Footer / CTA */}

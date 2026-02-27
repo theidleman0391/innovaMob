@@ -168,7 +168,7 @@ export default function Projects() {
           <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
             Nuestros Trabajos
           </span>
-          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-secondary)] mb-2">
+          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-accent)] mb-2">
             Proyectos Destacados
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">

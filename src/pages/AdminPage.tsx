@@ -12,6 +12,7 @@ import Editor, {
     BtnNumberedList, BtnBulletList, BtnLink, BtnClearFormatting,
     BtnStyles, Separator, createDropdown, BtnUndo, BtnRedo
 } from 'react-simple-wysiwyg';
+import DOMPurify from 'dompurify';
 
 const BtnFontSize = createDropdown('Tamaño', [
     ['Pequeño', () => document.execCommand('fontSize', false, '1'), ''],
@@ -230,7 +231,7 @@ function BlogPostModal({ initial, onSave, onClose }: { initial?: BlogPost; onSav
                     <Field label="Resumen (Introducción)"><textarea className={inputCls + ' resize-none'} rows={2} value={form.summary} onChange={e => set('summary', e.target.value)} /></Field>
                     <Field label="Contenido completo">
                         <div className="bg-white rounded-xl overflow-hidden border border-gray-200">
-                            <Editor value={form.content} onChange={e => set('content', e.target.value)} containerProps={{ style: { height: '300px', border: 'none' } }}>
+                            <Editor value={form.content} onChange={e => set('content', DOMPurify.sanitize(e.target.value))} containerProps={{ style: { height: '300px', border: 'none' } }}>
                                 <Toolbar>
                                     <BtnUndo />
                                     <BtnRedo />

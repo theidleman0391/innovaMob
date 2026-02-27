@@ -35,7 +35,7 @@ export default function Contact() {
             <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
               Contacto
             </span>
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-secondary)] mb-3">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-accent)] mb-3">
               ¿Listo para transformar tu espacio?
             </h2>
             <p className="text-base text-gray-600 leading-relaxed mb-6">

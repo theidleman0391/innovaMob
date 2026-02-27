@@ -23,7 +23,7 @@ export default function About() {
             <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
               Sobre InnovaMob
             </span>
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-secondary)] mb-3">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-accent)] mb-3">
               Pasión por el diseño y la excelencia en cada detalle
             </h2>
 

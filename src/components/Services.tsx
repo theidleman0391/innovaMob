@@ -55,7 +55,7 @@ export default function Services() {
           <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
             Mis Servicios
           </span>
-          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-secondary)] mb-2">
+          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-accent)] mb-2">
             Soluciones a medida para cada espacio
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
@@ -80,7 +80,7 @@ export default function Services() {
                   </h3>
                 </div>
 
-                <p className="text-gray-600 text-sm mb-5 flex-grow">
+                <p className="text-[var(--color-secondary)] text-sm mb-5 flex-grow">
                   {service.description}
                 </p>
 
@@ -88,7 +88,7 @@ export default function Services() {
                   {service.bullets.map((bullet, index) => (
                     <li key={index} className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" />
-                      <span className="text-gray-700 text-xs">{bullet}</span>
+                      <span className="text-[var(--color-secondary)] text-xs">{bullet}</span>
                     </li>
                   ))}
                 </ul>
