@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Plus, Trash2, Star, StarOff, LogOut, Upload, X, Pencil, Check, Loader2, ImagePlus, LayoutGrid, FileText } from 'lucide-react';
+import { Plus, Trash2, Star, StarOff, LogOut, Upload, X, Pencil, Check, Loader2, ImagePlus, LayoutGrid, FileText, Eye, EyeOff } from 'lucide-react';
 
 // STORE
 import { getProjects, addProject, updateProject, deleteProject, uploadImage } from '../services/projectStore';
@@ -50,6 +50,7 @@ const btnGhost = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-x
 function LoginScreen({ onLogin }: { onLogin: () => void }) {
     const [pass, setPass] = useState('');
     const [err, setErr] = useState(false);
+    const [showPass, setShowPass] = useState(false);
 
     const submit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -67,9 +68,14 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
                 <h1 className="text-xl font-bold text-[var(--color-secondary)] font-serif mb-1">Panel Admin</h1>
                 <p className="text-gray-400 text-sm mb-6">InnovaMob – acceso restringido</p>
                 <form onSubmit={submit} className="flex flex-col gap-4">
-                    <input type="password" placeholder="Contraseña" value={pass} onChange={e => { setPass(e.target.value); setErr(false); }} className={`${inputCls} ${err ? 'border-red-400 ring-2 ring-red-200' : ''}`} autoFocus />
+                    <div className="relative">
+                        <input type={showPass ? 'text' : 'password'} placeholder="Contraseña" value={pass} onChange={e => { setPass(e.target.value); setErr(false); }} className={`${inputCls} pr-10 ${err ? 'border-red-400 ring-2 ring-red-200' : ''}`} autoFocus />
+                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none">
+                            {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                    </div>
                     {err && <p className="text-red-500 text-xs">Contraseña incorrecta</p>}
-                    <button type="submit" className={btnPrimary + ' justify-center'}>Ingresar</button>
+                    <button type="submit" className={btnPrimary + ' justify-center mt-2'}>Ingresar</button>
                 </form>
             </div>
         </div>
