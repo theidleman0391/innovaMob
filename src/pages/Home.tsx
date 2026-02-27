@@ -6,6 +6,7 @@ import Process from '../components/Process';
 import About from '../components/About';
 import Reviews from '../components/Reviews';
 import Contact from '../components/Contact';
+import Projects from '../components/Projects';
 
 export default function Home() {
   // Scroll to the section indicated by the URL hash before first paint
@@ -65,6 +66,7 @@ export default function Home() {
         <Hero />
         <Services />
         <Process />
+        <Projects />
         <About />
         <Reviews />
         <Contact />
