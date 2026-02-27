@@ -100,7 +100,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, index }) =>
             </div>
 
             <div className="p-4 bg-[var(--color-bg-light)] flex-grow">
-                <h3 className="text-base font-bold text-[var(--color-secondary)] font-serif mb-1">
+                <h3 className="text-base font-bold text-[var(--color-accent)] font-serif mb-1">
                     {project.title}
                 </h3>
                 <p className="text-gray-500 text-sm">{project.construction_type}</p>
@@ -336,7 +336,7 @@ export default function ProjectsPage() {
 
                         {/* Details */}
                         <div className="w-full md:w-1/2 p-5 sm:p-8 md:p-10 flex flex-col justify-center">
-                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--color-secondary)] font-serif mb-4">
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--color-accent)] font-serif mb-4">
                                 {selected.project.title}
                             </h2>
                             <div className="space-y-4">

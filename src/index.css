@@ -4,13 +4,19 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  
-  --color-primary: #EAA063; /* Orange */
+
+  --color-primary: #EAA063;
+  /* Orange */
   --color-primary-hover: #D98F52;
-  --color-secondary: #1B2A41; /* Navy */
-  --color-accent: #1D7893; /* Teal */
+  --color-secondary: #1B2A41;
+  /* Navy */
+  --color-accent: #1D7893;
+  /* Teal */
+  --color-accent-dark: #145568;
+  /* Darker Teal for header scroll */
   --color-accent-hover: #16627A;
-  --color-bg-light: #EBE4D8; /* Beige */
+  --color-bg-light: #EBE4D8;
+  /* Beige */
 }
 
 html {
@@ -24,11 +30,13 @@ body {
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

@@ -74,12 +74,12 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[var(--color-secondary)] shadow-md py-2' : 'bg-[var(--color-secondary)]/90 backdrop-blur-sm py-2'
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${isScrolled ? 'bg-[var(--color-accent-dark)] shadow-md py-2' : 'bg-[var(--color-accent)] shadow-sm py-3 md:py-4'
         }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center max-w-7xl">
         <Link to="/" className="flex items-center gap-2" onClick={(e) => handleNavClick(e, '/#inicio')}>
-          <img src="/logo.png" alt="InnovaMob Logo" className="h-8 md:h-9 w-auto object-contain" />
+          <img src="/logo.png" alt="InnovaMob Logo" className="h-8 md:h-10 w-auto object-contain transition-all duration-300" />
         </Link>
 
         {/* Desktop Nav */}
@@ -89,7 +89,7 @@ export default function Header() {
               key={link.name}
               to={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-gray-200 hover:text-white font-medium transition-colors"
+              className="text-white/90 hover:text-white font-medium transition-colors"
             >
               {link.name}
             </Link>
@@ -108,14 +108,14 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[var(--color-secondary)] shadow-lg border-t border-gray-700">
-          <div className="flex flex-col p-4 gap-4">
+        <div className={`md:hidden absolute top-full left-0 right-0 shadow-lg border-t border-white/10 ${isScrolled ? 'bg-[var(--color-accent-dark)]' : 'bg-[var(--color-accent)]'}`}>
+          <div className="flex flex-col p-4 gap-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-gray-200 font-medium p-2 hover:bg-gray-800 rounded-lg"
+                className="text-white/90 font-medium p-3 hover:bg-black/10 rounded-lg transition-colors"
               >
                 {link.name}
               </Link>

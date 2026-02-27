@@ -124,7 +124,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
         </div>
       </div>
       <div className="p-4 bg-[var(--color-bg-light)] flex-grow">
-        <h3 className="text-base font-bold text-[var(--color-secondary)] font-serif mb-1">
+        <h3 className="text-base font-bold text-[var(--color-accent)] font-serif mb-1">
           {project.title}
         </h3>
         <p className="text-gray-500 text-sm">

@@ -75,7 +75,7 @@ export default function Services() {
                   <div className="w-9 h-9 bg-white rounded-xl shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
                     <Icon size={18} />
                   </div>
-                  <h3 className="text-sm font-bold text-[var(--color-secondary)] font-serif leading-tight">
+                  <h3 className="text-sm font-bold text-[var(--color-accent)] font-serif leading-tight">
                     {service.title}
                   </h3>
                 </div>

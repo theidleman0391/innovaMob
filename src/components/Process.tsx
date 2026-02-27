@@ -59,7 +59,7 @@ export default function Process() {
                   <span className="text-xs font-bold text-[var(--color-accent)] mb-2 block uppercase tracking-wider">
                     Paso 0{index + 1}
                   </span>
-                  <h4 className="text-sm font-bold text-[var(--color-secondary)] mb-2 font-serif">
+                  <h4 className="text-sm font-bold text-[var(--color-accent)] mb-2 font-serif">
                     {step.title}
                   </h4>
                   <p className="text-[var(--color-secondary)] text-sm">
