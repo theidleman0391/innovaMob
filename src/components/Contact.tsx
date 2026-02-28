@@ -93,6 +93,16 @@ export default function Contact() {
 
               <div className="flex items-start gap-4">
                 <div className="w-9 h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
+                  <Mail size={18} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[var(--color-secondary)] text-sm">Correo</h4>
+                  <p className="text-gray-600">fanor.vidal@gmail.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-9 h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
                   <MapPin size={18} />
                 </div>
                 <div>
