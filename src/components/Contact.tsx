@@ -16,9 +16,24 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send the data to an API
-    console.log('Form submitted:', formData);
-    alert('Mensaje enviado correctamente. Te contactaremos a la brevedad.');
+
+    // Construct WhatsApp message
+    let text = `¡Hola! Me gustaría cotizar un proyecto.\n\n`;
+    text += `*Mi nombre es:* ${formData.name}\n`;
+    text += `*Soy de:* ${formData.city}\n`;
+
+    if (formData.email) {
+      text += `*Mi correo es:* ${formData.email}\n`;
+    }
+
+    text += `\n*Mi idea / proyecto:* \n${formData.message}\n`;
+
+    const whatsappUrl = `https://wa.me/56995936847?text=${encodeURIComponent(text)}`;
+
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+
+    // Optional: reset form
     setFormData({ name: '', email: '', phone: '', city: '', message: '' });
   };
 
@@ -78,18 +93,6 @@ export default function Contact() {
 
               <div className="flex items-start gap-4">
                 <div className="w-9 h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
-                  <Mail size={18} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-[var(--color-secondary)] text-sm">Email</h4>
-                  <a href="mailto:contacto@innovamob.cl" className="text-gray-600 hover:text-[var(--color-primary)] transition-colors">
-                    contacto@innovamob.cl
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-9 h-9 bg-white rounded-full shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0">
                   <MapPin size={18} />
                 </div>
                 <div>
@@ -101,18 +104,18 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-100">
-            <h3 className="text-2xl font-bold text-[var(--color-secondary)] font-serif mb-2">
-              Déjanos un mensaje
+          <div className="bg-white p-5 md:p-6 rounded-2xl shadow-xl border border-gray-100 flex flex-col h-full">
+            <h3 className="text-xl font-bold text-[var(--color-accent)] font-serif mb-2">
+              ¿Tienes los planos? Compártenos tu proyecto
             </h3>
-            <p className="text-gray-500 mb-8">
-              Completa el formulario y nos pondremos en contacto contigo.
+            <p className="text-[var(--color-accent)]/80 text-sm mb-5">
+              Completa los datos y te redirigiremos para enviar toda la información directamente.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-gray-700">Nombre completo</label>
+            <form onSubmit={handleSubmit} className="space-y-4 flex flex-col flex-grow">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label htmlFor="name" className="text-xs font-medium text-gray-700">Nombre completo</label>
                   <input
                     type="text"
                     id="name"
@@ -120,41 +123,12 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
+                    className="w-full px-3 py-2 text-sm rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
                     placeholder="Ej. Juan Pérez"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium text-gray-700">Teléfono / WhatsApp</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
-                    placeholder="+56 9 1234 5678"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-gray-700">Correo electrónico</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
-                    placeholder="tu@email.com"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="city" className="text-sm font-medium text-gray-700">Comuna / Ciudad</label>
+                <div className="space-y-1.5">
+                  <label htmlFor="city" className="text-xs font-medium text-gray-700">Comuna / Ciudad</label>
                   <input
                     type="text"
                     id="city"
@@ -162,32 +136,43 @@ export default function Contact() {
                     value={formData.city}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
-                    placeholder="Ej. Las Condes"
+                    className="w-full px-3 py-2 text-sm rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white"
+                    placeholder="Ej. Puerto Montt"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-gray-700">Mensaje o idea de proyecto</label>
+              <div className="space-y-1.5 flex-grow">
+                <label htmlFor="message" className="text-xs font-medium text-gray-700">Detalles del proyecto</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white resize-none"
-                  placeholder="Cuéntanos qué tipo de mueble necesitas..."
+                  className="w-full h-full min-h-[100px] px-3 py-2 text-sm rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white resize-none"
+                  placeholder="Cuéntanos qué tienes en mente, medidas aproximadas, etc..."
                 ></textarea>
+              </div>
+
+              <div className="bg-blue-50 border border-blue-100 rounded-xl p-3 flex gap-3 items-start my-4">
+                <MessageCircle className="w-5 h-5 flex-shrink-0 text-blue-500 mt-0.5" />
+                <div>
+                  <p className="text-xs text-blue-800 font-medium">
+                    Fotos y Planos
+                  </p>
+                  <p className="text-[11px] text-blue-600/80 mt-0.5 leading-snug">
+                    Una vez que se abra WhatsApp, podrás adjuntar directamente desde ahí las fotos de tu espacio o los planos de tu proyecto para una cotización más exacta.
+                  </p>
+                </div>
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-[var(--color-secondary)] hover:bg-gray-800 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg"
+                className="w-full flex items-center justify-center gap-2 bg-[var(--color-secondary)] hover:bg-gray-800 text-white px-6 py-3 rounded-xl text-sm font-bold transition-all shadow-md hover:shadow-lg mt-auto"
               >
-                <span>Enviar mensaje</span>
-                <Send size={20} />
+                <span>Enviar datos a WhatsApp</span>
+                <Send size={16} />
               </button>
             </form>
           </div>
