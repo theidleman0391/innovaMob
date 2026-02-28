@@ -24,10 +24,15 @@ const smoothScrollTo = (element: HTMLElement) => {
 export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center pt-14 overflow-hidden">
-      {/* Background Cream */}
+      {/* Background styling with image and transparency */}
       <div className="absolute inset-0 z-0 bg-[#F9F6F0]">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-primary)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[var(--color-accent)]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+        <img
+          src="/hero.jpg"
+          alt="Cocinas a medida y diseño interior"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.15] mix-blend-multiply"
+        />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-primary)]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[var(--color-accent)]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
