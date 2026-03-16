@@ -8,10 +8,17 @@ export default function Header() {
   const location = useLocation();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 10);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -74,7 +81,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${isScrolled ? 'bg-[var(--color-accent-dark)] shadow-md py-2' : 'bg-[var(--color-accent)] shadow-sm py-3 md:py-4'
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${isScrolled ? 'bg-accent-dark shadow-md py-2' : 'bg-accent shadow-sm py-3 md:py-4'
         }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center max-w-7xl">
@@ -98,8 +105,10 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-white min-h-[44px] min-w-[44px] flex items-center justify-center"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-nav-menu"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -108,7 +117,7 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className={`md:hidden absolute top-full left-0 right-0 shadow-lg border-t border-white/10 ${isScrolled ? 'bg-[var(--color-accent-dark)]' : 'bg-[var(--color-accent)]'}`}>
+        <div id="mobile-nav-menu" className={`md:hidden absolute top-full left-0 right-0 shadow-lg border-t border-white/10 ${isScrolled ? 'bg-accent-dark' : 'bg-accent'}`}>
           <div className="flex flex-col p-4 gap-2">
             {navLinks.map((link) => (
               <Link

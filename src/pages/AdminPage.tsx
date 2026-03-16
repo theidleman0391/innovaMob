@@ -43,8 +43,8 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
     );
 }
 
-const inputCls = "w-full px-3 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/40 bg-white";
-const btnPrimary = "inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--color-primary)] text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50";
+const inputCls = "w-full px-3 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 bg-white";
+const btnPrimary = "inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50";
 const btnGhost = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all";
 
 /* ─── Login screen ───────────────────────────────────────────────── */
@@ -64,18 +64,18 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg-light)]">
+        <div className="min-h-[100dvh] flex items-center justify-center bg-bg-light">
             <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-sm">
-                <h1 className="text-xl font-bold text-[var(--color-secondary)] font-serif mb-1">Panel Admin</h1>
+                <h1 className="text-xl font-bold text-secondary font-serif mb-1">Panel Admin</h1>
                 <p className="text-gray-400 text-sm mb-6">InnovaMob – acceso restringido</p>
                 <form onSubmit={submit} className="flex flex-col gap-4">
                     <div className="relative">
-                        <input type={showPass ? 'text' : 'password'} placeholder="Contraseña" value={pass} onChange={e => { setPass(e.target.value); setErr(false); }} className={`${inputCls} pr-10 ${err ? 'border-red-400 ring-2 ring-red-200' : ''}`} autoFocus />
+                        <input type={showPass ? 'text' : 'password'} placeholder="Contraseña" value={pass} onChange={e => { setPass(e.target.value); setErr(false); }} className={`${inputCls} pr-10 ${err ? 'border-error ring-2 ring-error/30' : ''}`} autoFocus />
                         <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none">
                             {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                     </div>
-                    {err && <p className="text-red-500 text-xs">Contraseña incorrecta</p>}
+                    {err && <p className="text-error text-xs">Contraseña incorrecta</p>}
                     <button type="submit" className={btnPrimary + ' justify-center mt-2'}>Ingresar</button>
                 </form>
             </div>
@@ -110,11 +110,11 @@ function ImageUploader({ images, onChange, projectId }: { images: string[]; onCh
             <div className="flex flex-wrap gap-2">
                 {images.map((url, i) => (
                     <div key={url} className="relative group w-24 h-24 rounded-xl overflow-hidden border border-gray-200">
-                        <img src={url} alt={`img-${i}`} className="w-full h-full object-cover" />
+                        <img src={url} alt={`img-${i}`} className="w-full h-full object-cover" loading="lazy" />
                         <button type="button" onClick={() => onChange(images.filter((_, idx) => idx !== i))} className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white transition-opacity"><X size={18} /></button>
                     </div>
                 ))}
-                <button type="button" onClick={() => inputRef.current?.click()} disabled={uploading || images.length >= 5} className="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors disabled:opacity-40">
+                <button type="button" onClick={() => inputRef.current?.click()} disabled={uploading || images.length >= 5} className="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 hover:border-primary hover:text-primary transition-colors disabled:opacity-40">
                     {uploading ? <Loader2 size={20} className="animate-spin" /> : <ImagePlus size={20} />}
                     <span className="text-xs mt-1">{uploading ? 'Subiendo…' : 'Agregar'}</span>
                 </button>
@@ -149,13 +149,54 @@ function ProjectFormModal({ initial, onSave, onClose }: { initial?: Project; onS
         finally { setSaving(false); }
     };
 
+    const modalRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+            if (e.key === 'Tab') {
+                if (!modalRef.current) return;
+                const focusable = modalRef.current.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusable.length === 0) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === first) {
+                        last?.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === last) {
+                        first?.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        setTimeout(() => {
+            const firstInput = modalRef.current?.querySelector('input');
+            firstInput?.focus();
+        }, 100);
+        return () => { 
+            document.body.style.overflow = ''; 
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onClose]);
+
     return (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div 
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label={isEdit ? 'Editar proyecto' : 'Nuevo proyecto'}
+            ref={modalRef}
+        >
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
             <div className="relative bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[92vh] sm:max-h-[90vh] overflow-y-auto">
                 <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between z-10">
-                    <h2 className="text-base font-bold text-[var(--color-secondary)] font-serif">{isEdit ? 'Editar proyecto' : 'Nuevo proyecto'}</h2>
-                    <button onClick={onClose} className="text-gray-400 hover:text-gray-700 transition-colors"><X size={20} /></button>
+                    <h2 className="text-base font-bold text-secondary font-serif">{isEdit ? 'Editar proyecto' : 'Nuevo proyecto'}</h2>
+                    <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"><X size={20} /></button>
                 </div>
                 <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-5">
                     <Field label="Título"><input className={inputCls} value={form.title} onChange={e => set('title', e.target.value)} /></Field>
@@ -166,8 +207,8 @@ function ProjectFormModal({ initial, onSave, onClose }: { initial?: Project; onS
                     <Field label="Descripción"><textarea className={inputCls + ' resize-none'} rows={4} value={form.description} onChange={e => set('description', e.target.value)} /></Field>
                     <Field label="Imágenes (hasta 5)"><ImageUploader images={form.images} onChange={urls => set('images', urls)} projectId={projectId} /></Field>
                     <label className="flex items-center gap-3 cursor-pointer select-none">
-                        <div onClick={() => set('featured', !form.featured)} className={`w-10 h-6 rounded-full transition-colors ${form.featured ? 'bg-[var(--color-primary)]' : 'bg-gray-200'} relative`}><div className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-all ${form.featured ? 'left-5' : 'left-1'}`} /></div>
-                        <span className="text-sm font-medium text-gray-700 flex items-center gap-1.5"><Star size={14} className={form.featured ? 'text-yellow-400' : 'text-gray-300'} /> Proyecto destacado (aparece primero)</span>
+                        <div onClick={() => set('featured', !form.featured)} className={`w-10 h-6 rounded-full transition-colors ${form.featured ? 'bg-primary' : 'bg-gray-200'} relative`}><div className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-all ${form.featured ? 'left-5' : 'left-1'}`} /></div>
+                        <span className="text-sm font-medium text-gray-700 flex items-center gap-1.5"><Star size={14} className={form.featured ? 'text-primary' : 'text-gray-300'} /> Proyecto destacado (aparece primero)</span>
                     </label>
                     <div className="flex gap-3 justify-end pt-2 border-t border-gray-100">
                         <button type="button" onClick={onClose} className={`${btnGhost} border border-gray-200 text-gray-600 hover:bg-gray-50`}>Cancelar</button>
@@ -213,13 +254,54 @@ function BlogPostModal({ initial, onSave, onClose }: { initial?: BlogPost; onSav
         finally { setSaving(false); }
     };
 
+    const modalRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+            if (e.key === 'Tab') {
+                if (!modalRef.current) return;
+                const focusable = modalRef.current.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusable.length === 0) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === first) {
+                        last?.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === last) {
+                        first?.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        setTimeout(() => {
+            const firstInput = modalRef.current?.querySelector('input');
+            firstInput?.focus();
+        }, 100);
+        return () => { 
+            document.body.style.overflow = ''; 
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onClose]);
+
     return (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div 
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label={isEdit ? 'Editar post' : 'Nuevo post'}
+            ref={modalRef}
+        >
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
             <div className="relative bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[92vh] sm:max-h-[90vh] overflow-y-auto">
                 <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between z-10">
-                    <h2 className="text-base font-bold text-[var(--color-secondary)] font-serif">{isEdit ? 'Editar post' : 'Nuevo post'}</h2>
-                    <button onClick={onClose} className="text-gray-400 hover:text-gray-700 transition-colors"><X size={20} /></button>
+                    <h2 className="text-base font-bold text-secondary font-serif">{isEdit ? 'Editar post' : 'Nuevo post'}</h2>
+                    <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"><X size={20} /></button>
                 </div>
                 <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-5">
                     <Field label="Título"><input className={inputCls} value={form.title} onChange={e => set('title', e.target.value)} /></Field>
@@ -289,33 +371,33 @@ function ProjectsTab() {
     return (
         <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between mb-2">
-                <h2 className="text-xl font-bold font-serif text-[var(--color-secondary)]">Proyectos</h2>
+                <h2 className="text-xl font-bold font-serif text-secondary">Proyectos</h2>
                 <button onClick={() => { setEditing(undefined); setShowForm(true); }} className={btnPrimary}><Plus size={16} /> Nuevo proyecto</button>
             </div>
 
-            {loading ? <div className="py-20 flex justify-center"><Loader2 className="animate-spin text-[var(--color-primary)]" size={32} /></div> :
+            {loading ? <div className="py-20 flex justify-center"><Loader2 className="animate-spin text-primary" size={32} /></div> :
                 projects.length === 0 ? <p className="text-center py-20 text-gray-400">No hay proyectos.</p> :
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {projects.map(p => (
-                            <div key={p.id} className={`bg-white rounded-2xl overflow-hidden shadow-sm border ${p.featured ? 'border-yellow-300 ring-1 ring-yellow-200' : 'border-gray-100'}`}>
+                            <div key={p.id} className={`bg-white rounded-2xl overflow-hidden shadow-sm border ${p.featured ? 'border-primary ring-1 ring-primary/30' : 'border-gray-100'}`}>
                                 <div className="aspect-video relative">
-                                    {p.images[0] && <img src={p.images[0]} className="w-full h-full object-cover" />}
-                                    {p.featured && <span className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><Star size={10} /> Destacado</span>}
+                                    {p.images[0] && <img src={p.images[0]} className="w-full h-full object-cover" loading="lazy" />}
+                                    {p.featured && <span className="absolute top-2 left-2 bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><Star size={10} /> Destacado</span>}
                                 </div>
                                 <div className="p-4">
-                                    <h3 className="font-bold text-sm text-[var(--color-secondary)] font-serif leading-tight mb-1 line-clamp-2">{p.title}</h3>
+                                    <h3 className="font-bold text-sm text-secondary font-serif leading-tight mb-1 line-clamp-2">{p.title}</h3>
                                     <p className="text-xs text-gray-400 mb-3">{p.construction_type}</p>
                                     <div className="flex items-center gap-2">
-                                        <button onClick={async () => { await updateProject(p.id, { featured: !p.featured }); load(); }} className={`${btnGhost} flex-1 justify-center ${p.featured ? 'bg-yellow-50 text-yellow-600' : 'bg-gray-50 text-gray-500'}`}>
+                                        <button onClick={async () => { await updateProject(p.id, { featured: !p.featured }); load(); }} className={`${btnGhost} flex-1 justify-center ${p.featured ? 'bg-primary/10 text-primary' : 'bg-gray-50 text-gray-500'}`}>
                                             {p.featured ? <StarOff size={13} /> : <Star size={13} />} {p.featured ? 'Quitar dest.' : 'Destacar'}
                                         </button>
-                                        <button onClick={() => { setEditing(p); setShowForm(true); }} className={`${btnGhost} bg-blue-50 text-blue-600`}><Pencil size={13} /></button>
+                                        <button onClick={() => { setEditing(p); setShowForm(true); }} className={`${btnGhost} bg-accent/10 text-accent`}><Pencil size={13} /></button>
                                         <button disabled={deleting === p.id} onClick={async () => {
                                             if (!confirm('¿Eliminar?')) return;
                                             setDeleting(p.id);
                                             await deleteProject(p.id, p.images.map(u => u.match(/project-images\/(.+)/)?.[1] as string).filter(Boolean));
                                             load();
-                                        }} className={`${btnGhost} bg-red-50 text-red-500`}>
+                                        }} className={`${btnGhost} bg-error/10 text-error`}>
                                             {deleting === p.id ? <Loader2 size={13} className="animate-spin" /> : <Trash2 size={13} />}
                                         </button>
                                     </div>
@@ -346,29 +428,29 @@ function BlogTab() {
     return (
         <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between mb-2">
-                <h2 className="text-xl font-bold font-serif text-[var(--color-secondary)]">Artículos del Blog</h2>
+                <h2 className="text-xl font-bold font-serif text-secondary">Artículos del Blog</h2>
                 <button onClick={() => { setEditing(undefined); setShowForm(true); }} className={btnPrimary}><Plus size={16} /> Nuevo post</button>
             </div>
 
-            {loading ? <div className="py-20 flex justify-center"><Loader2 className="animate-spin text-[var(--color-primary)]" size={32} /></div> :
+            {loading ? <div className="py-20 flex justify-center"><Loader2 className="animate-spin text-primary" size={32} /></div> :
                 posts.length === 0 ? <p className="text-center py-20 text-gray-400">No hay posts.</p> :
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {posts.map(p => (
                             <div key={p.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
                                 <div className="aspect-video relative">
-                                    {p.image && <img src={p.image} className="w-full h-full object-cover" />}
+                                    {p.image && <img src={p.image} className="w-full h-full object-cover" loading="lazy" />}
                                 </div>
                                 <div className="p-4 flex flex-col flex-grow">
-                                    <h3 className="font-bold text-sm text-[var(--color-secondary)] font-serif leading-tight mb-1 line-clamp-2">{p.title}</h3>
+                                    <h3 className="font-bold text-sm text-secondary font-serif leading-tight mb-1 line-clamp-2">{p.title}</h3>
                                     <p className="text-xs text-gray-400 mb-3 line-clamp-2 flex-grow">{p.summary}</p>
                                     <div className="flex items-center gap-2 pt-2 border-t border-gray-50">
-                                        <button onClick={() => { setEditing(p); setShowForm(true); }} className={`${btnGhost} flex-1 justify-center bg-blue-50 text-blue-600`}><Pencil size={13} /> Editar</button>
+                                        <button onClick={() => { setEditing(p); setShowForm(true); }} className={`${btnGhost} flex-1 justify-center bg-accent/10 text-accent`}><Pencil size={13} /> Editar</button>
                                         <button disabled={deleting === p.id} onClick={async () => {
                                             if (!confirm('¿Eliminar?')) return;
                                             setDeleting(p.id);
                                             await deletePost(p.id, p.image.match(/project-images\/(.+)/)?.[1] || null);
                                             load();
-                                        }} className={`${btnGhost} bg-red-50 text-red-500`}>
+                                        }} className={`${btnGhost} bg-error/10 text-error`}>
                                             {deleting === p.id ? <Loader2 size={13} className="animate-spin" /> : <Trash2 size={13} />}
                                         </button>
                                     </div>
@@ -388,8 +470,8 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     const [tab, setTab] = useState<'projects' | 'blog'>('projects');
 
     return (
-        <div className="min-h-screen bg-[var(--color-bg-light)]">
-            <header className="bg-[var(--color-secondary)] text-white px-4 md:px-8 py-4 flex items-center justify-between shadow-md">
+        <div className="min-h-[100dvh] bg-bg-light">
+            <header className="bg-secondary text-white px-4 md:px-8 py-4 flex items-center justify-between shadow-md">
                 <div className="flex items-center gap-8">
                     <div>
                         <p className="text-xs text-gray-400 font-medium uppercase tracking-widest mb-0.5">InnovaMob</p>
@@ -397,8 +479,8 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
                     </div>
                     {/* PC Tabs */}
                     <div className="hidden md:flex bg-white/10 p-1 rounded-xl gap-1">
-                        <button onClick={() => setTab('projects')} className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${tab === 'projects' ? 'bg-white text-[var(--color-secondary)] shadow' : 'text-gray-300 hover:text-white'}`}><LayoutGrid size={16} /> Proyectos</button>
-                        <button onClick={() => setTab('blog')} className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${tab === 'blog' ? 'bg-white text-[var(--color-secondary)] shadow' : 'text-gray-300 hover:text-white'}`}><FileText size={16} /> Blog</button>
+                        <button onClick={() => setTab('projects')} className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${tab === 'projects' ? 'bg-white text-secondary shadow' : 'text-gray-300 hover:text-white'}`}><LayoutGrid size={16} /> Proyectos</button>
+                        <button onClick={() => setTab('blog')} className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${tab === 'blog' ? 'bg-white text-secondary shadow' : 'text-gray-300 hover:text-white'}`}><FileText size={16} /> Blog</button>
                     </div>
                 </div>
                 <button onClick={onLogout} className="text-gray-400 hover:text-white transition-colors p-2 flex items-center gap-2 text-sm"><LogOut size={16} /> <span className="hidden sm:inline">Cerrar Sesión</span></button>
@@ -406,8 +488,8 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
 
             {/* Mobile Tabs */}
             <div className="md:hidden flex bg-white border-b border-gray-100">
-                <button onClick={() => setTab('projects')} className={`flex-1 flex justify-center items-center gap-2 py-3 text-sm font-medium border-b-2 ${tab === 'projects' ? 'border-[var(--color-primary)] text-[var(--color-primary)]' : 'border-transparent text-gray-500'}`}><LayoutGrid size={18} /> Proyectos</button>
-                <button onClick={() => setTab('blog')} className={`flex-1 flex justify-center items-center gap-2 py-3 text-sm font-medium border-b-2 ${tab === 'blog' ? 'border-[var(--color-primary)] text-[var(--color-primary)]' : 'border-transparent text-gray-500'}`}><FileText size={18} /> Blog</button>
+                <button onClick={() => setTab('projects')} className={`flex-1 flex justify-center items-center gap-2 py-3 text-sm font-medium border-b-2 ${tab === 'projects' ? 'border-primary text-primary' : 'border-transparent text-gray-500'}`}><LayoutGrid size={18} /> Proyectos</button>
+                <button onClick={() => setTab('blog')} className={`flex-1 flex justify-center items-center gap-2 py-3 text-sm font-medium border-b-2 ${tab === 'blog' ? 'border-primary text-primary' : 'border-transparent text-gray-500'}`}><FileText size={18} /> Blog</button>
             </div>
 
             <main className="max-w-6xl mx-auto px-4 md:px-6 py-8">

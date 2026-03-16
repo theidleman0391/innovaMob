@@ -53,7 +53,7 @@ export default function App() {
   const isAdmin = location.pathname === '/admin';
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-[100dvh]">
       {!isAdmin && <Header />}
       <div className="flex-grow">
         <PageTransition>

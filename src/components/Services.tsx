@@ -49,13 +49,13 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicios" className="py-10 md:py-14 xl:py-20 bg-white relative">
+    <section id="servicios" className="py-10 md:py-14 xl:py-16 bg-white relative">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center max-w-3xl mx-auto mb-6">
-          <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
+          <span className="text-primary font-semibold tracking-wider uppercase text-xs mb-2 block">
             Mis Servicios
           </span>
-          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-accent)] mb-2">
+          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-3xl font-serif font-bold text-accent mb-2">
             Soluciones a medida para cada espacio
           </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
@@ -69,26 +69,26 @@ export default function Services() {
             return (
               <div
                 key={service.id}
-                className="bg-[var(--color-bg-light)] rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1 flex flex-col h-full"
+                className="bg-bg-light rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1 flex flex-col h-full"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 bg-white rounded-xl shadow-sm flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
+                  <div className="w-9 h-9 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                     <Icon size={18} />
                   </div>
-                  <h3 className="text-sm font-bold text-[var(--color-accent)] font-serif leading-tight">
+                  <h3 className="text-sm font-bold text-accent font-serif leading-tight">
                     {service.title}
                   </h3>
                 </div>
 
-                <p className="text-[var(--color-secondary)] text-sm mb-5 flex-grow">
+                <p className="text-secondary text-sm mb-5 flex-grow">
                   {service.description}
                 </p>
 
                 <ul className="space-y-2 mt-auto">
                   {service.bullets.map((bullet, index) => (
                     <li key={index} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" />
-                      <span className="text-[var(--color-secondary)] text-xs">{bullet}</span>
+                      <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                      <span className="text-secondary text-xs">{bullet}</span>
                     </li>
                   ))}
                 </ul>
@@ -102,7 +102,7 @@ export default function Services() {
             href="https://wa.me/56995936847"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-sm"
+            className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-sm"
           >
             <MessageCircle size={24} />
             <span>Consultar</span>

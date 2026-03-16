@@ -5,18 +5,33 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
 
-  --color-primary: #EAA063;
-  /* Orange */
+  /* Brand Colors */
+  --color-primary: #EAA063; /* Orange */
   --color-primary-hover: #D98F52;
-  --color-secondary: #1B2A41;
-  /* Navy */
-  --color-accent: #1D7893;
-  /* Teal */
+  --color-secondary: #1B2A41; /* Navy */
+  --color-accent: #1D7893; /* Teal */
   --color-accent-dark: #145568;
-  /* Darker Teal for header scroll */
   --color-accent-hover: #16627A;
-  --color-bg-light: #EBE4D8;
-  /* Beige */
+  --color-bg-light: #EBE4D8; /* Beige */
+
+  /* Neutral palette tinted with secondary (Navy) */
+  --color-gray-50: #f5f6f8;
+  --color-gray-100: #eaedf1;
+  --color-gray-200: #d0d6df;
+  --color-gray-300: #aab5c5;
+  --color-gray-400: #7e8da3;
+  --color-gray-500: #5f7089;
+  --color-gray-600: #49586f;
+  --color-gray-700: #3b465a;
+  --color-gray-800: #333d4e;
+  --color-gray-900: #2c3442;
+  --color-gray-950: #1d222b;
+  
+  /* Semantic feedback colors (curated, not default tailwind) */
+  --color-success: #2fa86a;
+  --color-error: #df4b4b;
+  --color-warning: #eab308;
+  --color-info: #3b82f6;
 }
 
 html {

@@ -2,7 +2,7 @@ import { CheckCircle2 } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="nosotros" className="py-10 md:py-14 xl:py-20 bg-[var(--color-bg-light)]">
+    <section id="nosotros" className="py-10 md:py-14 xl:py-16 bg-bg-light">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           <div className="relative">
@@ -14,16 +14,16 @@ export default function About() {
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl hidden md:block max-w-xs">
-              <p className="text-2xl font-bold text-[var(--color-primary)] mb-1">+35</p>
-              <p className="text-sm text-[var(--color-secondary)] font-medium">Años transformando espacios con muebles a medida.</p>
+              <p className="text-2xl font-bold text-primary mb-1">+35</p>
+              <p className="text-sm text-secondary font-medium">Años transformando espacios con muebles a medida.</p>
             </div>
           </div>
 
           <div>
-            <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-xs mb-2 block">
+            <span className="text-primary font-semibold tracking-wider uppercase text-xs mb-2 block">
               Sobre InnovaMob
             </span>
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-[var(--color-accent)] mb-3">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-3xl font-serif font-bold text-accent mb-3">
               Pasión por el diseño y la excelencia en cada detalle
             </h2>
 
@@ -44,8 +44,8 @@ export default function About() {
                 'Cumplimiento estricto de plazos de entrega'
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[var(--color-accent)] shrink-0" />
-                  <span className="text-[var(--color-secondary)] text-sm font-medium">{item}</span>
+                  <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
+                  <span className="text-secondary text-sm font-medium">{item}</span>
                 </li>
               ))}
             </ul>

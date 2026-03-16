@@ -16,7 +16,7 @@ export default function BlogList() {
       .finally(() => setLoading(false));
   }, []);
   return (
-    <div className="pt-24 min-h-screen bg-[var(--color-bg-light)]">
+    <div className="pt-24 min-h-[100dvh] bg-bg-light">
       <Helmet>
         <title>Blog | InnovaMob - Consejos sobre muebles a medida</title>
         <meta name="description" content="Descubre consejos, tendencias y guías sobre diseño y fabricación de muebles de cocina, closets y mobiliario a medida." />
@@ -24,10 +24,10 @@ export default function BlogList() {
 
       <div className="container mx-auto px-4 md:px-6 max-w-7xl py-12">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[var(--color-primary)] font-semibold tracking-wider uppercase text-sm mb-4 block">
+          <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">
             Nuestro Blog
           </span>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-[var(--color-secondary)] mb-6">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-secondary mb-6">
             Inspiración y consejos para tu hogar
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed">
@@ -37,7 +37,7 @@ export default function BlogList() {
 
         {loading ? (
           <div className="flex justify-center py-20">
-            <Loader2 className="animate-spin text-[var(--color-primary)]" size={32} />
+            <Loader2 className="animate-spin text-primary" size={32} />
           </div>
         ) : posts.length === 0 ? (
           <p className="text-center text-gray-500 py-12">Aún no hay artículos publicados en el blog.</p>
@@ -52,7 +52,7 @@ export default function BlogList() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[var(--color-primary)] uppercase tracking-wider">
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary uppercase tracking-wider">
                     {post.category}
                   </div>
                 </Link>
@@ -63,7 +63,7 @@ export default function BlogList() {
                     <time dateTime={post.date}>{post.date}</time>
                   </div>
 
-                  <h2 className="text-xl font-bold text-[var(--color-secondary)] mb-3 font-serif line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors">
+                  <h2 className="text-xl font-bold text-secondary mb-3 font-serif line-clamp-2 group-hover:text-primary transition-colors">
                     <Link to={`/blog/${post.slug}`}>
                       {post.title}
                     </Link>
@@ -75,7 +75,7 @@ export default function BlogList() {
 
                   <Link
                     to={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-2 text-[var(--color-primary)] font-medium hover:text-[var(--color-primary-hover)] transition-colors mt-auto group/link"
+                    className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-hover transition-colors mt-auto group/link"
                   >
                     <span>Leer artículo completo</span>
                     <ArrowRight size={18} className="transition-transform group-hover/link:translate-x-1" />
